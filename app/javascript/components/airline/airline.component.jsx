@@ -1,7 +1,12 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 const Airline = () => {
-    return <div>Airline#show view</div>
+
+    useEffect(() => {
+        //get all 
+
+    })
+    return (<div>Airline#show view</div>)
 }
 
 export default Airline
