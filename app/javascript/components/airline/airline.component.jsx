@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 import Header from './header.component'
 import ReviewForm from './review-form.component'
+import Review from './review.component'
 
 const Wrapper = styled.div`
   margin-left: auto;
@@ -55,7 +56,6 @@ const Airline = (props) => {
 
     const handleChange = (event) => {
         event.preventDefault()
-
         const name = event.target.name
         const value = event.target.value
         setReview({
@@ -82,9 +82,27 @@ const Airline = (props) => {
 
     const setRating = (score, event) => {
         event.preventDefault()
+        score = score ? score : 0
+        setReview({...review, score}) //????????????????????
+    }
 
-        setReview({...review, score}) //???????????????????????????????
-        console.log(review)
+    let total, average = 0
+    let userReviews
+    if (reviews && reviews.length > 0) {
+        // ????????????????
+        total = reviews.reduce((total, review) => total + review.attributes.score, 0)
+        average = total > 0 ? (parseFloat(total) / parseFloat(reviews.length)) : 0
+
+        userReviews = reviews.map((review, index) => {
+            return (
+                <Review 
+                key={index}
+                id={review.id}
+                attributes={review.attributes}
+                />
+            )
+        })
+        
     }
     
 
@@ -98,10 +116,9 @@ const Airline = (props) => {
                 <Header 
                   attributes={airline.data.attributes}
                   reviews={reviews}
-                //   average={average}
-                  average={3}
+                  average={average}
                 />
-                {/* {userReviews} */}
+                {userReviews}
               </Main>
             </Column>
             <Column>
