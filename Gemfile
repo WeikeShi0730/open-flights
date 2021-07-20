@@ -23,6 +23,7 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'fast_jsonapi'
 gem 'rufo'
+gem 'devise', '~> 4.2'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
